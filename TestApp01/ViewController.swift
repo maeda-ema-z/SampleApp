@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         initViewModel()
         viewModel.fetchArticles()
         initTableView()
+        navigationLogin()
     }
 
     private func initViewModel() {
@@ -38,6 +39,12 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
+    }
+
+    private func navigationLogin() {
+        let loginSb: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let naviController = loginSb.instantiateViewController(withIdentifier: "loginSbId") as! LoginViewController
+        self.present(naviController, animated: true, completion: nil)
     }
 
 }
