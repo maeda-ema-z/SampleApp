@@ -12,50 +12,25 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate var articles: [Article] = [] {
-        didSet {
-            tableView.reloadData()
-        }
+    fileprivate let viewModel = ViewModel()
+
+    fileprivate var articles: [Article] {
+        return viewModel.articles
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchArtcles()
+        initViewModel()
+        viewModel.fetchArticles()
         initTableView()
     }
 
-    fileprivate func fetchArtcles() {
-        // Do any additional setup after loading the view, typically from a nib.
-        guard let url: URL = URL(string: "http://qiita.com/api/v2/items") else { return }
-        let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
-            print("data: \(data)")
-            print("response: \(response)")
-            print("error: \(error)")
-            do {
-                guard let data = data else { return }
-                guard let jsonArray = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [Any] else { return }
-                print(jsonArray)
-                print("count: \(jsonArray.count)")
-                let articleJsonArray = jsonArray.flatMap { (json: Any) -> [String: Any]? in
-                    return json as? [String: Any]
-                }
-                let articles = articleJsonArray.flatMap { (articleJson: [String: Any]) -> Article in
-                    return Article(json: articleJson)
-                }
-            
-                print("title: \(articleJsonArray[0]["title"])")
-                print("hoge: \(articleJsonArray[0]["hoge"])")
-                DispatchQueue.main.async() { () -> Void in
-                    self.articles = articles
-                }
-            }
-            catch {
-                print(error)
-            }
-        })
-        task.resume()
+    private func initViewModel() {
+        viewModel.reloadHandler = { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
-    
+
     fileprivate func initTableView() {
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         tableView.estimatedRowHeight = 150
@@ -87,8 +62,17 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("section: \(indexPath.section) index: \(indexPath.row)")
+        let vc = UIStoryboard(name: "ArticleDetail", bundle: nil).instantiateInitialViewController()! as! ArticleDetailViewController
+        vc.article = articles[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        return
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        if distanceToBottom < 500 {
+            viewModel.fetchArticles()
+        }
     }
 }
