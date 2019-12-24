@@ -14,8 +14,11 @@ class ViewController: UIViewController {
 
     fileprivate let viewModel = ViewModel()
 
-    fileprivate var articles: [Article] {
-        return viewModel.articles
+//    fileprivate var articles: [Article] {
+//        return viewModel.articles
+//    }
+    fileprivate var articleNewses: [ArticleNews] {
+        return viewModel.articleNewses
     }
     
     override func viewDidLoad() {
@@ -44,14 +47,15 @@ extension ViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+//        return articles.count
+        return articleNewses.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TableViewCell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        let article = articles[indexPath.row]
-        //let title = article.title
-        cell.bindData(article: article)
-//        cell.bindData(text: "section: \(indexPath.section) index: \(indexPath.row)")
+//        let article = articles[indexPath.row]
+//        cell.bindData(article: article)
+        let articleNews = articleNewses[indexPath.row]
+        cell.bindData(articleNews: articleNews)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,7 +67,8 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("section: \(indexPath.section) index: \(indexPath.row)")
         let vc = UIStoryboard(name: "ArticleDetail", bundle: nil).instantiateInitialViewController()! as! ArticleDetailViewController
-        vc.article = articles[indexPath.row]
+//        vc.article = articles[indexPath.row]
+        vc.articleNews = articleNewses[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 

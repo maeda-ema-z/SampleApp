@@ -12,13 +12,15 @@ class ArticleDetailViewController: UIViewController {
 
     @IBOutlet weak var bodyLabel: UILabel!
 
-    var article: Article?
+//    var article: Article?
+    var articleNews: ArticleNews?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        bodyLabel.text = article?.body
+//        bodyLabel.text = article?.body
+        bodyLabel.text = articleNews?.body
     }
     
 

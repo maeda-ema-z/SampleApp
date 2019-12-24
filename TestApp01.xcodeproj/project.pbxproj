@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E44938923B1CE580038834C /* ArticleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44938823B1CE580038834C /* ArticleUser.swift */; };
+		4E44938B23B1CFD20038834C /* ArticleNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44938A23B1CFD20038834C /* ArticleNews.swift */; };
 		4E5E68B123B05533009E645A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5E68B023B05533009E645A /* Article.swift */; };
 		4EBB6C9723B0ADA000C29FAE /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBB6C9623B0ADA000C29FAE /* ViewModel.swift */; };
 		4ED63C8623B19C3600326DDB /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED63C8523B19C3600326DDB /* ArticleDetailViewController.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E44938823B1CE580038834C /* ArticleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleUser.swift; sourceTree = "<group>"; };
+		4E44938A23B1CFD20038834C /* ArticleNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNews.swift; sourceTree = "<group>"; };
 		4E5E68B023B05533009E645A /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4EBB6C9623B0ADA000C29FAE /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4ED63C8523B19C3600326DDB /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				4EBB6C9623B0ADA000C29FAE /* ViewModel.swift */,
 				4ED63C8523B19C3600326DDB /* ArticleDetailViewController.swift */,
 				4ED63C8723B19C9000326DDB /* ArticleDetail.storyboard */,
+				4E44938823B1CE580038834C /* ArticleUser.swift */,
+				4E44938A23B1CFD20038834C /* ArticleNews.swift */,
 			);
 			path = TestApp01;
 			sourceTree = "<group>";
@@ -278,8 +284,10 @@
 			files = (
 				4EBB6C9723B0ADA000C29FAE /* ViewModel.swift in Sources */,
 				4E5E68B123B05533009E645A /* Article.swift in Sources */,
+				4E44938923B1CE580038834C /* ArticleUser.swift in Sources */,
 				4ED63C8623B19C3600326DDB /* ArticleDetailViewController.swift in Sources */,
 				8477575823A33D65000BB73F /* TableViewCell.swift in Sources */,
+				4E44938B23B1CFD20038834C /* ArticleNews.swift in Sources */,
 				847756ED23A0A530000BB73F /* ViewController.swift in Sources */,
 				847756EB23A0A530000BB73F /* AppDelegate.swift in Sources */,
 			);

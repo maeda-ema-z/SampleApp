@@ -24,10 +24,15 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func bindData(article: Article) {
-        titleLabel.text = article.title
-        userIdLabel.text = article.userId
-        setUserThumbImageView(imageUrlString: article.profileImageUrlString)
+//    func bindData(article: Article) {
+//        titleLabel.text = article.title
+//        userIdLabel.text = article.userId
+//        setUserThumbImageView(imageUrlString: article.profileImageUrlString)
+//    }
+    func bindData(articleNews: ArticleNews) {
+        titleLabel.text = articleNews.title
+        userIdLabel.text = articleNews.user.id
+        setUserThumbImageView(imageUrlString: articleNews.user.profileImageUrlString)
     }
 
     private func setUserThumbImageView(imageUrlString: String) {

@@ -11,7 +11,7 @@
 struct Article {
     let title: String
     let body: String
-    let renderdBody: String
+    let renderedBody: String
     let urlString: String
     let userId: String
     let profileImageUrlString: String
@@ -19,7 +19,7 @@ struct Article {
     init(json: [String: Any]) {
         title = json["title"] as? String ?? ""
         body = json["body"] as? String ?? ""
-        renderdBody = json["renderd_body"] as? String ?? ""
+        renderedBody = json["rendered_body"] as? String ?? ""
         urlString = json["url"] as? String ?? ""
         if let user = json["user"] as? [String: Any] {
             userId = user["id"] as? String ?? ""
@@ -33,7 +33,7 @@ struct Article {
     init() {
         title = ""
         body = ""
-        renderdBody = ""
+        renderedBody = ""
         urlString = ""
         userId = ""
         profileImageUrlString = ""

@@ -13,9 +13,14 @@ class ViewModel {
     private var page: Int = 1
     private var loadStatus: String = "initial"
 
-    var articles: [Article] = [] {
+//    var articles: [Article] = [] {
+//        didSet {
+//            reloadHandler() //追加
+//        }
+//    }
+    var articleNewses: [ArticleNews] = [] {
         didSet {
-            reloadHandler() //追加
+            reloadHandler()
         }
     }
 
@@ -28,19 +33,23 @@ class ViewModel {
         let task: URLSessionTask  = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
             do {
                 guard let data = data else { return }
-                guard let jsonArray = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [Any] else { return }
-                let articlesJson = jsonArray.flatMap { (json: Any) -> [String: Any]? in
-                    return json as? [String: Any]
-                }
-                let articles = articlesJson.map { (articleJson: [String: Any]) -> Article in
-                    return Article(json: articleJson)
-                }
-                if articles.count == 0 {
+//                guard let jsonArray = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [Any] else { return }
+//                let articlesJson = jsonArray.flatMap { (json: Any) -> [String: Any]? in
+//                    return json as? [String: Any]
+//                }
+//                let articles = articlesJson.map { (articleJson: [String: Any]) -> Article in
+//                    return Article(json: articleJson)
+//                }
+                let jsonDecoder = JSONDecoder()
+                let articleNewses = try jsonDecoder.decode([ArticleNews].self, from: data)
+//                if articles.count == 0 {
+                if articleNewses.count == 0 {
                     self.loadStatus = "full"
                     return
                 }
                 DispatchQueue.main.async() { () -> Void in
-                    self.articles = self.articles + articles
+//                    self.articles = self.articles + articles
+                    self.articleNewses = self.articleNewses + articleNewses
                     self.loadStatus = "loadmore"
                 }
                 if self.page == 100 {
