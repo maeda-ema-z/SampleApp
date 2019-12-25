@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
 
@@ -14,11 +15,14 @@ class ViewController: UIViewController {
 
     fileprivate let viewModel = ViewModel()
 
+    private let disposeBag = DisposeBag()
+
 //    fileprivate var articles: [Article] {
 //        return viewModel.articles
 //    }
     fileprivate var articleNewses: [ArticleNews] {
-        return viewModel.articleNewses
+//        return viewModel.articleNewses
+        return viewModel.articleNewsVariable.value
     }
     
     override func viewDidLoad() {
@@ -30,9 +34,14 @@ class ViewController: UIViewController {
     }
 
     private func initViewModel() {
-        viewModel.reloadHandler = { [weak self] in
-            self?.tableView.reloadData()
-        }
+//        viewModel.reloadHandler = { [weak self] in
+//            self?.tableView.reloadData()
+//        }
+        viewModel.articleNewsVariable.asObservable()
+            .subscribe(onNext: { [weak self] articles in
+                self?.tableView?.reloadData()
+            })
+            .addDisposableTo(disposeBag)
     }
 
     fileprivate func initTableView() {

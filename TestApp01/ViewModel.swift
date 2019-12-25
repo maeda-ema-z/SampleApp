@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewModel {
 
@@ -18,13 +19,14 @@ class ViewModel {
 //            reloadHandler() //追加
 //        }
 //    }
-    var articleNewses: [ArticleNews] = [] {
-        didSet {
-            reloadHandler()
-        }
-    }
+//    var articleNewses: [ArticleNews] = [] {
+//        didSet {
+//            reloadHandler()
+//        }
+//    }
+    var articleNewsVariable: Variable<[ArticleNews]> = Variable([])
 
-    var reloadHandler: () -> Void = { } //追加
+//    var reloadHandler: () -> Void = { } //追加
 
     func fetchArticles() {
         guard loadStatus != "fetching" && loadStatus != "full" else { return }
@@ -49,14 +51,16 @@ class ViewModel {
                 }
                 DispatchQueue.main.async() { () -> Void in
 //                    self.articles = self.articles + articles
-                    self.articleNewses = self.articleNewses + articleNewses
+//                    self.articleNewses = self.articleNewses + articleNewses
+                    self.articleNewsVariable.value = self.articleNewsVariable.value + articleNewses
                     self.loadStatus = "loadmore"
                 }
+                self.page += 1
                 if self.page == 100 {
                     self.loadStatus = "full"
                     return
                 }
-                self.page += 1
+//                self.page += 1
             }
             catch {
                 print(error)
