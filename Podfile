@@ -7,6 +7,7 @@ target 'TestApp01' do
 
   # Pods for TestApp01
   pod 'RxSwift', '~> 4.0'
+  pod 'RxCocoa', '~> 4.0'
 
   target 'TestApp01Tests' do
     inherit! :search_paths

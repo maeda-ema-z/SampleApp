@@ -13,7 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate let viewModel = ViewModel()
+//    fileprivate let viewModel = ViewModel()
+    fileprivate let articleModelHandler = ArticleModelHandler()
 
     private let disposeBag = DisposeBag()
 
@@ -22,26 +23,34 @@ class ViewController: UIViewController {
 //    }
     fileprivate var articleNewses: [ArticleNews] {
 //        return viewModel.articleNewses
-        return viewModel.articleNewsVariable.value
+//        return viewModel.articleNewsVariable.value
+        return articleModelHandler.articleNewses
+//        return articleModelHandler.articleNewsRelay.value
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewModel()
-        viewModel.fetchArticles()
-        initTableView()
         navigationLogin()
+//        viewModel.fetchArticles()
+        articleModelHandler.fetchArticles()
+        initTableView()
     }
 
     private func initViewModel() {
 //        viewModel.reloadHandler = { [weak self] in
 //            self?.tableView.reloadData()
 //        }
-        viewModel.articleNewsVariable.asObservable()
-            .subscribe(onNext: { [weak self] articles in
+//        viewModel.articleNewsVariable.asObservable()
+//            .subscribe(onNext: { [weak self] articles in
+//                self?.tableView?.reloadData()
+//            })
+//        .disposed(by: disposeBag)
+        articleModelHandler.articleNewsRelay.subscribe(
+            onNext: { [weak self] event in
                 self?.tableView?.reloadData()
-            })
-            .addDisposableTo(disposeBag)
+            }
+        ).disposed(by: disposeBag)
     }
 
     fileprivate func initTableView() {
@@ -93,7 +102,8 @@ extension ViewController: UITableViewDelegate {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         if distanceToBottom < 500 {
-            viewModel.fetchArticles()
+//            viewModel.fetchArticles()
+            articleModelHandler.fetchArticles()
         }
     }
 }
