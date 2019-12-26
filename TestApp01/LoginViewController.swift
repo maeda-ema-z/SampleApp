@@ -43,6 +43,9 @@ class LoginViewController: UIViewController {
         if loginId == "1234" && password == "0000" {
             let ud = UserDefaults.standard
             ud.set(loginId, forKey: "loginId")
+            let naviC = self.presentingViewController as? UINavigationController
+            let parentVC = naviC?.viewControllers.last as! ViewController
+            parentVC.isLogin = true
             self.dismiss(animated: true, completion: nil)
         } else {
             msgTextField.text = "Please Input LoginID = 1234 , Password = 0000 !!"

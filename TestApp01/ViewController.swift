@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     fileprivate let articleModelHandler = ArticleModelHandler()
 
     private let disposeBag = DisposeBag()
+    var isLogin = false
 
 //    fileprivate var articles: [Article] {
 //        return viewModel.articles
@@ -31,10 +32,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewModel()
-        navigationLogin()
 //        viewModel.fetchArticles()
-        articleModelHandler.fetchArticles()
+//        articleModelHandler.fetchArticles()
+        navigationLogin()
         initTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let presented = self.presentedViewController {
+            print(presented)
+            if type(of: presented) == LoginViewController.self {
+                fetchAction()
+            }
+        } else {
+            print("none")
+        }
+    }
+
+    func fetchAction() {
+        if (isLogin) {
+//            viewModel.fetchArticles()
+            articleModelHandler.fetchArticles()
+        }
     }
 
     private func initViewModel() {
@@ -62,7 +83,11 @@ class ViewController: UIViewController {
     private func navigationLogin() {
         let loginSb: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let naviController = loginSb.instantiateViewController(withIdentifier: "loginSbId") as! LoginViewController
+        naviController.modalPresentationStyle = .fullScreen
         self.present(naviController, animated: true, completion: nil)
+//        self.present(naviController, animated: true, completion: {
+//            print("aaaa")
+//        })
     }
 
 }
@@ -103,7 +128,8 @@ extension ViewController: UITableViewDelegate {
         let distanceToBottom = maximumOffset - currentOffsetY
         if distanceToBottom < 500 {
 //            viewModel.fetchArticles()
-            articleModelHandler.fetchArticles()
+//            articleModelHandler.fetchArticles()
+            fetchAction()
         }
     }
 }
