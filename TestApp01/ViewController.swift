@@ -16,6 +16,8 @@ class ViewController: UIViewController {
 //    fileprivate let viewModel = ViewModel()
     fileprivate let articleModelHandler = ArticleModelHandler()
 
+    private let articleNotificationTask = ArticleNotificationTask()
+
     private let disposeBag = DisposeBag()
     var isLogin = false
 
@@ -45,16 +47,23 @@ class ViewController: UIViewController {
             print(presented)
             if type(of: presented) == LoginViewController.self {
                 fetchAction()
+                startNotification()
             }
         } else {
             print("none")
         }
     }
 
-    func fetchAction() {
-        if (isLogin) {
+    private func fetchAction() {
+        if isLogin {
 //            viewModel.fetchArticles()
             articleModelHandler.fetchArticles()
+        }
+    }
+
+    private func startNotification() {
+        if isLogin {
+            articleNotificationTask.startTImer()
         }
     }
 
