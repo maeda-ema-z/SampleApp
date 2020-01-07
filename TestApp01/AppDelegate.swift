@@ -43,3 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = String(format: "%@", deviceToken as CVarArg) as String
+        print("deviceToken: \(token)")
+    }
+}
+

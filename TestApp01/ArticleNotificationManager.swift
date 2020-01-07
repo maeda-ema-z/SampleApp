@@ -6,6 +6,7 @@
 //  Copyright © 2019 admin. All rights reserved.
 //
 
+import UIKit
 import UserNotifications
 
 class ArticleNotificationManager: NSObject, UNUserNotificationCenterDelegate {
@@ -17,23 +18,32 @@ class ArticleNotificationManager: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func regist() {
-        print("regist UNUserNotificationCenter")
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
-        center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {(granted, error) in
-            let ud = UserDefaults.standard
-            if error != nil {
-                print("Error !!")
-                return
-            }
-            if granted {
-                print("OK !!")
-                ud.set(true, forKey: "isNotification")
-            } else {
-                print("NG !!")
-                ud.set(false, forKey: "isNotification")
-            }
-        })
+
+        if #available(iOS 10.0, *) {
+
+            print("regist UNUserNotificationCenter")
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {(granted, error) in
+                let ud = UserDefaults.standard
+                if error != nil {
+                    print("Error !!")
+                    return
+                }
+                if granted {
+                    print("OK !!")
+                    center.delegate = self
+                    ud.set(true, forKey: "isNotification")
+                } else {
+                    print("NG !!")
+                    ud.set(false, forKey: "isNotification")
+                }
+            })
+
+        } else {
+
+            let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -64,5 +74,4 @@ class ArticleNotificationManager: NSObject, UNUserNotificationCenterDelegate {
             }
         })
     }
-
 }

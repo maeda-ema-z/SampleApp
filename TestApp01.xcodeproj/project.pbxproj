@@ -51,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		23A8DC316FA085253D5AEEEA /* Pods-TestApp01Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp01Tests.release.xcconfig"; path = "Target Support Files/Pods-TestApp01Tests/Pods-TestApp01Tests.release.xcconfig"; sourceTree = "<group>"; };
+		4BFCF1C523C43D5200E95A98 /* TestApp01.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestApp01.entitlements; sourceTree = "<group>"; };
 		4E44938823B1CE580038834C /* ArticleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleUser.swift; sourceTree = "<group>"; };
 		4E44938A23B1CFD20038834C /* ArticleNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNews.swift; sourceTree = "<group>"; };
 		4E57C93623B5C034004C40C0 /* ArticleNotificationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNotificationTask.swift; sourceTree = "<group>"; };
@@ -150,6 +151,7 @@
 		847756E923A0A530000BB73F /* TestApp01 */ = {
 			isa = PBXGroup;
 			children = (
+				4BFCF1C523C43D5200E95A98 /* TestApp01.entitlements */,
 				847756EA23A0A530000BB73F /* AppDelegate.swift */,
 				847756EC23A0A530000BB73F /* ViewController.swift */,
 				847756EE23A0A530000BB73F /* Main.storyboard */,
@@ -633,6 +635,7 @@
 			baseConfigurationReference = D14DDA3F089D0B9FAF844B56 /* Pods-TestApp01.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TestApp01/TestApp01.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TestApp01/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -651,6 +654,7 @@
 			baseConfigurationReference = BD67F03E6EDF71F968197C41 /* Pods-TestApp01.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TestApp01/TestApp01.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TestApp01/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
