@@ -34,12 +34,13 @@ class ArticleModelHandler {
                 if articleNewses.count == 0 {
                     self?.loadStatus = "full"
                 } else {
-                    DispatchQueue.main.async() { () -> Void in
+//                    DispatchQueue.main.async() { () -> Void in
                         self?.articleNewses.append(contentsOf: articleNewses)
                         self?.articleNewsRelay.accept(true)
 //                        self?.articleNewsRelay.accept(self?.articleNewses ?? [])
-                    }
+//                    }
                     self?.loadStatus = "loadmore"
+                    self?.myPageNo += 1
                 }
             },
             onError: { [weak self] error in

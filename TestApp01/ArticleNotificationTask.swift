@@ -13,7 +13,7 @@ class ArticleNotificationTask {
 
     func startTImer() -> Void {
         Timer.scheduledTimer(
-            timeInterval: 5,
+            timeInterval: 15,
             target: self,
             selector: #selector(ArticleNotificationTask.timerExecute),
             userInfo: nil,

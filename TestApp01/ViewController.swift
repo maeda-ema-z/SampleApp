@@ -76,7 +76,9 @@ class ViewController: UIViewController {
 //                self?.tableView?.reloadData()
 //            })
 //        .disposed(by: disposeBag)
-        articleModelHandler.articleNewsRelay.subscribe(
+        articleModelHandler.articleNewsRelay
+            .observeOn(MainScheduler.instance)
+            .subscribe(
             onNext: { [weak self] event in
                 self?.tableView?.reloadData()
             }

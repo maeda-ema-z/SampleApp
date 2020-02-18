@@ -48,7 +48,9 @@ class LoginViewController: UIViewController {
             parentVC.isLogin = true
             self.dismiss(animated: true, completion: nil)
         } else {
-            msgTextField.text = "Please Input LoginID = 1234 , Password = 0000 !!"
+            let aaa = UIDevice.current.identifierForVendor!.uuidString
+            msgTextField.text = aaa
+            // msgTextField.text = "Please Input LoginID = 1234 , Password = 0000 !!"
         }
     }
 }
