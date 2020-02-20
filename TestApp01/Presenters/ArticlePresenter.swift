@@ -13,7 +13,7 @@ class ArticlePresenter {
     static let shared: ArticlePresenter = ArticlePresenter()
     private init() {}
 
-    private let articleModelHandler = ArticleModelHandler.shared
+    private let articleModelHandler = ArticleNewsUseCase.shared
     private let disposeBag = DisposeBag()
 
     var reloadFunc: () -> Void = {}
