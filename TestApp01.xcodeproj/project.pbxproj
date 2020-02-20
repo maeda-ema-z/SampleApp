@@ -16,12 +16,12 @@
 		2652864E23FE51CE0001B81D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652864B23FE51CE0001B81D /* LoginViewController.swift */; };
 		2652865123FE51F50001B81D /* ArticleNewsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652865023FE51F50001B81D /* ArticleNewsGateway.swift */; };
 		3DE08E45D2C16887C26B1771 /* Pods_TestApp01.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DC423983257B203863AD97 /* Pods_TestApp01.framework */; };
-		4E57C93723B5C034004C40C0 /* ArticleNotificationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57C93623B5C034004C40C0 /* ArticleNotificationTask.swift */; };
+		4E57C93723B5C034004C40C0 /* ArticleNotificationResident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57C93623B5C034004C40C0 /* ArticleNotificationResident.swift */; };
 		4E5E68B123B05533009E645A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5E68B023B05533009E645A /* Article.swift */; };
 		4EA1B52723B1EBC7002B1C5B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EA1B52623B1EBC7002B1C5B /* Login.storyboard */; };
 		4EBB6C9723B0ADA000C29FAE /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBB6C9623B0ADA000C29FAE /* ViewModel.swift */; };
 		4ED63C8823B19C9000326DDB /* ArticleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ED63C8723B19C9000326DDB /* ArticleDetail.storyboard */; };
-		4EFE557123B5EBCA0082A39E /* ArticleNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFE557023B5EBCA0082A39E /* ArticleNotificationManager.swift */; };
+		4EFE557123B5EBCA0082A39E /* ArticleNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFE557023B5EBCA0082A39E /* ArticleNotificationPresenter.swift */; };
 		847756EB23A0A530000BB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847756EA23A0A530000BB73F /* AppDelegate.swift */; };
 		847756F023A0A530000BB73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847756EE23A0A530000BB73F /* Main.storyboard */; };
 		847756F223A0A532000BB73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847756F123A0A532000BB73F /* Assets.xcassets */; };
@@ -62,12 +62,12 @@
 		2652864B23FE51CE0001B81D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2652865023FE51F50001B81D /* ArticleNewsGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleNewsGateway.swift; sourceTree = "<group>"; };
 		4BFCF1C523C43D5200E95A98 /* TestApp01.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestApp01.entitlements; sourceTree = "<group>"; };
-		4E57C93623B5C034004C40C0 /* ArticleNotificationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNotificationTask.swift; sourceTree = "<group>"; };
+		4E57C93623B5C034004C40C0 /* ArticleNotificationResident.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNotificationResident.swift; sourceTree = "<group>"; };
 		4E5E68B023B05533009E645A /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4EA1B52623B1EBC7002B1C5B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4EBB6C9623B0ADA000C29FAE /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4ED63C8723B19C9000326DDB /* ArticleDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArticleDetail.storyboard; sourceTree = "<group>"; };
-		4EFE557023B5EBCA0082A39E /* ArticleNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNotificationManager.swift; sourceTree = "<group>"; };
+		4EFE557023B5EBCA0082A39E /* ArticleNotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNotificationPresenter.swift; sourceTree = "<group>"; };
 		847756E723A0A530000BB73F /* TestApp01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847756EA23A0A530000BB73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847756EF23A0A530000BB73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -212,8 +212,8 @@
 				4EBB6C9623B0ADA000C29FAE /* ViewModel.swift */,
 				4ED63C8723B19C9000326DDB /* ArticleDetail.storyboard */,
 				4EA1B52623B1EBC7002B1C5B /* Login.storyboard */,
-				4E57C93623B5C034004C40C0 /* ArticleNotificationTask.swift */,
-				4EFE557023B5EBCA0082A39E /* ArticleNotificationManager.swift */,
+				4E57C93623B5C034004C40C0 /* ArticleNotificationResident.swift */,
+				4EFE557023B5EBCA0082A39E /* ArticleNotificationPresenter.swift */,
 				2652864823FE51CE0001B81D /* Controllers */,
 				2652863D23FE468C0001B81D /* Presenters */,
 				2652864523FE51A60001B81D /* UseCases */,
@@ -497,13 +497,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBB6C9723B0ADA000C29FAE /* ViewModel.swift in Sources */,
-				4EFE557123B5EBCA0082A39E /* ArticleNotificationManager.swift in Sources */,
+				4EFE557123B5EBCA0082A39E /* ArticleNotificationPresenter.swift in Sources */,
 				2652864D23FE51CE0001B81D /* ArticleDetailViewController.swift in Sources */,
 				2652863B23FE46740001B81D /* ArticleUser.swift in Sources */,
 				2652864723FE51A60001B81D /* ArticleNewsUseCase.swift in Sources */,
 				2652864C23FE51CE0001B81D /* ViewController.swift in Sources */,
 				2652865123FE51F50001B81D /* ArticleNewsGateway.swift in Sources */,
-				4E57C93723B5C034004C40C0 /* ArticleNotificationTask.swift in Sources */,
+				4E57C93723B5C034004C40C0 /* ArticleNotificationResident.swift in Sources */,
 				2652863C23FE46740001B81D /* ArticleNews.swift in Sources */,
 				4E5E68B123B05533009E645A /* Article.swift in Sources */,
 				2652863F23FE468C0001B81D /* ArticlePresenter.swift in Sources */,

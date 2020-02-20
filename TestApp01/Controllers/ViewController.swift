@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 //    fileprivate let viewModel = ViewModel()
     private let articlePresenter = ArticlePresenter.shared
     private let articleModelHandler = ArticleNewsUseCase.shared
-    private let articleNotificationTask = ArticleNotificationTask()
+    private let articleNotificationTask = ArticleNotificationResident()
 
     var isLogin = false
 

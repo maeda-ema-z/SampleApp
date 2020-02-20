@@ -9,19 +9,19 @@
 import UIKit
 import UserNotifications
 
-class ArticleNotificationTask {
+class ArticleNotificationResident {
 
     func startTImer() -> Void {
         Timer.scheduledTimer(
             timeInterval: 15,
             target: self,
-            selector: #selector(ArticleNotificationTask.timerExecute),
+            selector: #selector(ArticleNotificationResident.timerExecute),
             userInfo: nil,
             repeats: true)
     }
 
     @objc func timerExecute() {
         print("timerExecute !!")
-        ArticleNotificationManager.shared.add()
+        ArticleNotificationPresenter.shared.add()
     }
 }

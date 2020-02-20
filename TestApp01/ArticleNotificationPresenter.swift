@@ -9,8 +9,8 @@
 import UIKit
 import UserNotifications
 
-class ArticleNotificationManager: NSObject, UNUserNotificationCenterDelegate {
-    static let shared = ArticleNotificationManager()
+class ArticleNotificationPresenter: NSObject, UNUserNotificationCenterDelegate {
+    static let shared = ArticleNotificationPresenter()
 
     private override init() {
         super.init()
