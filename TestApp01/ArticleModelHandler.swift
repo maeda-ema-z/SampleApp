@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 class ArticleModelHandler {
+    static let shared: ArticleModelHandler = ArticleModelHandler()
+    private init() {}
 
     private var myPageNo: Int = 1
     private var loadStatus: String = "initial"

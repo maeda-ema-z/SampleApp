@@ -7,27 +7,26 @@
 //
 
 import UIKit
-import RxSwift
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
 //    fileprivate let viewModel = ViewModel()
-    fileprivate let articleModelHandler = ArticleModelHandler()
-
+    private let articlePresenter = ArticlePresenter.shared
+    private let articleModelHandler = ArticleModelHandler.shared
     private let articleNotificationTask = ArticleNotificationTask()
 
-    private let disposeBag = DisposeBag()
     var isLogin = false
 
 //    fileprivate var articles: [Article] {
 //        return viewModel.articles
 //    }
+
     fileprivate var articleNewses: [ArticleNews] {
 //        return viewModel.articleNewses
 //        return viewModel.articleNewsVariable.value
-        return articleModelHandler.articleNewses
+        return articlePresenter.articleNewses
 //        return articleModelHandler.articleNewsRelay.value
     }
 
@@ -76,13 +75,17 @@ class ViewController: UIViewController {
 //                self?.tableView?.reloadData()
 //            })
 //        .disposed(by: disposeBag)
-        articleModelHandler.articleNewsRelay
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-            onNext: { [weak self] event in
-                self?.tableView?.reloadData()
-            }
-        ).disposed(by: disposeBag)
+//        articleModelHandler.articleNewsRelay
+//            .observeOn(MainScheduler.instance)
+//            .subscribe(
+//            onNext: { [weak self] event in
+////                self?.tableView?.reloadData()
+//                self?.reloadData()
+//            }
+//        ).disposed(by: disposeBag)
+        articlePresenter.initArticleViewModel() {
+            self.tableView?.reloadData()
+        }
     }
 
     fileprivate func initTableView() {
