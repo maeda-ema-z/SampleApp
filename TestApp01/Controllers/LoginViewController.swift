@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var msgTextField: UILabel!
 
+    private let loginUseCase = LoginUseCase.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +42,7 @@ class LoginViewController: UIViewController {
     @IBAction func LoginTouchDown(_ sender: Any) {
         let loginId = loginIdTextField.text
         let password = passwordTextField.text
-        if loginId == "1234" && password == "0000" {
+        if loginUseCase.login(loginId: loginId ?? "", password: password ?? "") {
             let ud = UserDefaults.standard
             ud.set(loginId, forKey: "loginId")
             let naviC = self.presentingViewController as? UINavigationController
@@ -48,9 +50,9 @@ class LoginViewController: UIViewController {
             parentVC.isLogin = true
             self.dismiss(animated: true, completion: nil)
         } else {
-            let aaa = UIDevice.current.identifierForVendor!.uuidString
-            msgTextField.text = aaa
-            // msgTextField.text = "Please Input LoginID = 1234 , Password = 0000 !!"
+            //let aaa = UIDevice.current.identifierForVendor!.uuidString
+            //msgTextField.text = aaa
+            msgTextField.text = "Please Input LoginID = 1234 , Password = 0000 !!"
         }
     }
 }

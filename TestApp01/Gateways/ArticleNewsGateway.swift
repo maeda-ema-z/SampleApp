@@ -24,6 +24,10 @@ class ArticleNewsGateway {
                 let task: URLSessionTask  = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
                     do {
                         if let data = data {
+//                            print("data=\(data)")
+//                            let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [Any]
+//                            print(json)
+//                            print("count: \(json.count)")
                             let jsonDecoder = JSONDecoder()
                             let articleNewses = try jsonDecoder.decode([ArticleNews].self, from: data)
                             observer(.success(articleNewses))

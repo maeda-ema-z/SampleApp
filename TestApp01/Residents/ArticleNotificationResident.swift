@@ -14,7 +14,7 @@ class ArticleNotificationResident {
     static let shared = ArticleNotificationResident()
     private init() {}
 
-    private let articleNotificationPresenter = ArticleNotificationPresenter.shared
+    private let articleNotificationUseCase = ArticleNotificationUseCase.shared
 
     func startTImer() -> Void {
         Timer.scheduledTimer(
@@ -27,6 +27,6 @@ class ArticleNotificationResident {
 
     @objc func timerExecute() {
         print("timerExecute !!")
-        articleNotificationPresenter.addNotification()
+        articleNotificationUseCase.sendNotification()
     }
 }
