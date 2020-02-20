@@ -9,6 +9,7 @@
 import RxSwift
 
 class ArticlePresenter {
+    // 本クラスはシングルトンで使用する
     static let shared: ArticlePresenter = ArticlePresenter()
     private init() {}
 
