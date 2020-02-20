@@ -27,6 +27,6 @@ class ArticleNotificationResident {
 
     @objc func timerExecute() {
         print("timerExecute !!")
-        articleNotificationPresenter.add()
+        articleNotificationPresenter.addNotification()
     }
 }
