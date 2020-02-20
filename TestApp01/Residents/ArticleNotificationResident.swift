@@ -10,6 +10,11 @@ import UIKit
 import UserNotifications
 
 class ArticleNotificationResident {
+    // 本クラスはシングルトンで使用する
+    static let shared = ArticleNotificationResident()
+    private init() {}
+
+    private let articleNotificationPresenter = ArticleNotificationPresenter.shared
 
     func startTImer() -> Void {
         Timer.scheduledTimer(
@@ -22,6 +27,6 @@ class ArticleNotificationResident {
 
     @objc func timerExecute() {
         print("timerExecute !!")
-        ArticleNotificationPresenter.shared.add()
+        articleNotificationPresenter.add()
     }
 }

@@ -10,21 +10,21 @@ import RxSwift
 
 class ArticlePresenter {
     // 本クラスはシングルトンで使用する
-    static let shared: ArticlePresenter = ArticlePresenter()
+    static let shared = ArticlePresenter()
     private init() {}
 
-    private let articleModelHandler = ArticleNewsUseCase.shared
+    private let articleNewsUseCase = ArticleNewsUseCase.shared
     private let disposeBag = DisposeBag()
 
     var reloadFunc: () -> Void = {}
 
     var articleNewses: [ArticleNews] {
-        return articleModelHandler.articleNewses
+        return articleNewsUseCase.articleNewses
     }
 
     func initArticleViewModel(reload: @escaping () -> Void) {
         reloadFunc = reload
-        articleModelHandler.articleNewsRelay
+        articleNewsUseCase.articleNewsRelay
             .observeOn(MainScheduler.instance)
             .subscribe(
             onNext: { [weak self] event in

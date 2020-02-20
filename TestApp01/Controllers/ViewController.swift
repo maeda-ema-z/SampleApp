@@ -12,29 +12,19 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-//    fileprivate let viewModel = ViewModel()
     private let articlePresenter = ArticlePresenter.shared
-    private let articleModelHandler = ArticleNewsUseCase.shared
-    private let articleNotificationTask = ArticleNotificationResident()
+    private let articleNewsUseCase = ArticleNewsUseCase.shared
+    private let articleNotificationResident = ArticleNotificationResident.shared
 
     var isLogin = false
 
-//    fileprivate var articles: [Article] {
-//        return viewModel.articles
-//    }
-
     fileprivate var articleNewses: [ArticleNews] {
-//        return viewModel.articleNewses
-//        return viewModel.articleNewsVariable.value
         return articlePresenter.articleNewses
-//        return articleModelHandler.articleNewsRelay.value
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewModel()
-//        viewModel.fetchArticles()
-//        articleModelHandler.fetchArticles()
         navigationLogin()
         initTableView()
     }
@@ -55,34 +45,17 @@ class ViewController: UIViewController {
 
     private func fetchAction() {
         if isLogin {
-//            viewModel.fetchArticles()
-            articleModelHandler.fetchArticles()
+            articleNewsUseCase.fetchArticles()
         }
     }
 
     private func startNotification() {
         if isLogin {
-            articleNotificationTask.startTImer()
+            articleNotificationResident.startTImer()
         }
     }
 
     private func initViewModel() {
-//        viewModel.reloadHandler = { [weak self] in
-//            self?.tableView.reloadData()
-//        }
-//        viewModel.articleNewsVariable.asObservable()
-//            .subscribe(onNext: { [weak self] articles in
-//                self?.tableView?.reloadData()
-//            })
-//        .disposed(by: disposeBag)
-//        articleModelHandler.articleNewsRelay
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(
-//            onNext: { [weak self] event in
-////                self?.tableView?.reloadData()
-//                self?.reloadData()
-//            }
-//        ).disposed(by: disposeBag)
         articlePresenter.initArticleViewModel() {
             self.tableView?.reloadData()
         }
@@ -111,13 +84,10 @@ extension ViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return articles.count
         return articleNewses.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TableViewCell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-//        let article = articles[indexPath.row]
-//        cell.bindData(article: article)
         let articleNews = articleNewses[indexPath.row]
         cell.bindData(articleNews: articleNews)
         return cell
@@ -131,7 +101,6 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("section: \(indexPath.section) index: \(indexPath.row)")
         let vc = UIStoryboard(name: "ArticleDetail", bundle: nil).instantiateInitialViewController()! as! ArticleDetailViewController
-//        vc.article = articles[indexPath.row]
         vc.articleNews = articleNewses[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -141,8 +110,6 @@ extension ViewController: UITableViewDelegate {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         if distanceToBottom < 500 {
-//            viewModel.fetchArticles()
-//            articleModelHandler.fetchArticles()
             fetchAction()
         }
     }

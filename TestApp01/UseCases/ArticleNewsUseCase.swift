@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 class ArticleNewsUseCase {
-    static let shared: ArticleNewsUseCase = ArticleNewsUseCase()
+    // 本クラスはシングルトンで使用する
+    static let shared = ArticleNewsUseCase()
     private init() {}
 
     private let articleNewsGateway = ArticleNewsGateway.shared

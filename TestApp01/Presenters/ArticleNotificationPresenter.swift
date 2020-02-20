@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 
 class ArticleNotificationPresenter: NSObject, UNUserNotificationCenterDelegate {
+    // 本クラスはシングルトンで使用する
     static let shared = ArticleNotificationPresenter()
 
     private override init() {

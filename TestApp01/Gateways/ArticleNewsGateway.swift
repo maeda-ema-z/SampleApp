@@ -10,7 +10,8 @@ import RxSwift
 import RxCocoa
 
 class ArticleNewsGateway {
-    static let shared: ArticleNewsGateway = ArticleNewsGateway()
+    // 本クラスはシングルトンで使用する
+    static let shared = ArticleNewsGateway()
     private init() {}
 
     enum MyError: Error {
