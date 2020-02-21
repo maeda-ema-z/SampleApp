@@ -6,16 +6,38 @@
 //  Copyright © 2020 admin. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
+
 class LoginUseCase {
     // 本クラスはシングルトンで使用する
     static let shared = LoginUseCase()
     private init() {}
 
-    func login(loginId: String, password: String) -> Bool {
-        if loginId == "1234" && password == "0000" {
-            return true
-        } else {
-            return false
+    private let loginGateway = LoginGateway()
+    private let disposeBag = DisposeBag()
+    let loginRelay = PublishRelay<Bool>()
+
+    private var loginResult: LoginResult? = nil
+
+    func login(loginId: String, password: String) {
+        loginGateway.createLoginObservable(loginId, password).subscribe(
+            onSuccess: { [weak self] result in
+                self?.loginResult = result
+                self?.loginRelay.accept(true)
+            },
+            onError: { [weak self] error in
+                self?.loginResult = LoginResult(result: "ng")
+            }
+        ).disposed(by: disposeBag)
+    }
+
+    func isSuccess() -> Bool {
+        if let loginResult = loginResult {
+            if loginResult.result == "ok" {
+                return true
+            }
         }
+        return false
     }
 }

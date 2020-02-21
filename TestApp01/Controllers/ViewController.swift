@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initViewModel()
+        initPresenter()
         navigationLogin()
         initTableView()
     }
@@ -55,9 +55,9 @@ class ViewController: UIViewController {
         }
     }
 
-    private func initViewModel() {
-        articlePresenter.initArticleViewModel() {
-            self.tableView?.reloadData()
+    private func initPresenter() {
+        articlePresenter.initArticleViewModel() { [weak self] in
+            self?.tableView?.reloadData()
         }
     }
 

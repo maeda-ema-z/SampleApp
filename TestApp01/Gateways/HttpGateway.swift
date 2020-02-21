@@ -16,9 +16,13 @@ class HttpGateway<T> {
     }
 
     func createHttpObservable(url: String, decoder: @escaping (Data) -> T) -> Single<T> {
+        print("url=\(url)")
         return Single<T>.create( subscribe : { (observer) -> Disposable in
             if let url: URL = URL(string: url) {
                 let task: URLSessionTask  = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
+                        print("data: \(String(describing: data))")
+                        print("response: \(String(describing: response))")
+                        print("error: \(String(describing: error))")
                         if let data = data {
                             let results = decoder(data)
                             observer(.success(results))

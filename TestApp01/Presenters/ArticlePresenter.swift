@@ -16,19 +16,20 @@ class ArticlePresenter {
     private let articleNewsUseCase = ArticleNewsUseCase.shared
     private let disposeBag = DisposeBag()
 
-    var reloadFunc: () -> Void = {}
+//    var reloadFunc: () -> Void = {}
 
     var articleNewses: [ArticleNews] {
         return articleNewsUseCase.articleNewses
     }
 
     func initArticleViewModel(reload: @escaping () -> Void) {
-        reloadFunc = reload
+//        reloadFunc = reload
         articleNewsUseCase.articleNewsRelay
             .observeOn(MainScheduler.instance)
             .subscribe(
-            onNext: { [weak self] event in
-                self?.reloadFunc()
+            onNext: { event in
+//                reloadFunc()
+                reload()
             }
         ).disposed(by: disposeBag)
     }

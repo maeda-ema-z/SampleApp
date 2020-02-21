@@ -15,17 +15,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var msgTextField: UILabel!
 
+    private let loginPresenter = LoginPresenter.shared
     private let loginUseCase = LoginUseCase.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        msgTextField.text = ""
-        let ud = UserDefaults.standard
-        if let loginId = ud.object(forKey: "loginId") as? String {
-            loginIdTextField.text = loginId
-        }
+        initPresenter()
+        initInputField()
     }
     
 
@@ -39,20 +37,44 @@ class LoginViewController: UIViewController {
     }
     */
 
+    private func initPresenter() {
+        loginPresenter.initArticleViewModel(
+            success: { [weak self] in
+                self?.successAuth()
+            },
+            failure: { [weak self] (msg) in
+                self?.failureAuth(message: msg)
+            })
+    }
+
+    private func initInputField() {
+        msgTextField.text = ""
+        let ud = UserDefaults.standard
+        if let loginId = ud.object(forKey: "loginId") as? String {
+            loginIdTextField.text = loginId
+        }
+    }
+
     @IBAction func LoginTouchDown(_ sender: Any) {
         let loginId = loginIdTextField.text
         let password = passwordTextField.text
-        if loginUseCase.login(loginId: loginId ?? "", password: password ?? "") {
-            let ud = UserDefaults.standard
-            ud.set(loginId, forKey: "loginId")
-            let naviC = self.presentingViewController as? UINavigationController
-            let parentVC = naviC?.viewControllers.last as! ViewController
-            parentVC.isLogin = true
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            //let aaa = UIDevice.current.identifierForVendor!.uuidString
-            //msgTextField.text = aaa
-            msgTextField.text = "Please Input LoginID = 1234 , Password = 0000 !!"
-        }
+        loginUseCase.login(loginId: loginId ?? "", password: password ?? "")
+//        successAuth()
+    }
+
+    func successAuth() {
+        let loginId = loginIdTextField.text
+        let ud = UserDefaults.standard
+        ud.set(loginId, forKey: "loginId")
+        let naviC = self.presentingViewController as? UINavigationController
+        let parentVC = naviC?.viewControllers.last as! ViewController
+        parentVC.isLogin = true
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    func failureAuth(message: String) {
+        //let aaa = UIDevice.current.identifierForVendor!.uuidString
+        //msgTextField.text = aaa
+        msgTextField.text = message
     }
 }
