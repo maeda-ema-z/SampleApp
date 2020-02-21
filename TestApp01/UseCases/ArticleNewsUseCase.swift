@@ -15,7 +15,7 @@ class ArticleNewsUseCase {
     static let shared = ArticleNewsUseCase()
     private init() {}
 
-    private let articleNewsGateway = ArticleNewsGateway.shared
+    private let articleNewsGateway = ArticleNewsGateway()
 
     private var myPageNo: Int = 1
     private var loadStatus: String = "initial"

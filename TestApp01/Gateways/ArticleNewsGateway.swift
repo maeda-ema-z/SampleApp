@@ -7,43 +7,18 @@
 //
 
 import RxSwift
-import RxCocoa
 
-class ArticleNewsGateway {
-    // 本クラスはシングルトンで使用する
-    static let shared = ArticleNewsGateway()
-    private init() {}
-
-    enum MyError: Error {
-        case unknown
-    }
+class ArticleNewsGateway: HttpGateway<[ArticleNews]> {
 
     func createFetchObservable(page: Int) -> Single<[ArticleNews]> {
-        return Single<[ArticleNews]>.create( subscribe : { (observer) -> Disposable in
-            if let url: URL = URL(string: "http://qiita.com/api/v2/items?page=\(page)&per_page=20") {
-                let task: URLSessionTask  = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
-                    do {
-                        if let data = data {
-//                            print("data=\(data)")
-//                            let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [Any]
-//                            print(json)
-//                            print("count: \(json.count)")
-                            let jsonDecoder = JSONDecoder()
-                            let articleNewses = try jsonDecoder.decode([ArticleNews].self, from: data)
-                            observer(.success(articleNewses))
-                        } else {
-                            observer(.error(error ?? MyError.unknown))
-                        }
-                    }
-                    catch {
-                        print(error)
-                    }
-                })
-                task.resume()
-            } else {
-                observer(.error(MyError.unknown))
+        return createHttpObservable(url: "http://qiita.com/api/v2/items?page=\(page)&per_page=20") { data in
+            do {
+                let jsonDecoder = JSONDecoder()
+                return try jsonDecoder.decode([ArticleNews].self, from: data)
+            } catch {
+                print("decode error !!")
+                return []
             }
-            return Disposables.create()
-        })
+        }
     }
 }
