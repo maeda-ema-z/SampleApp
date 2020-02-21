@@ -10,7 +10,8 @@ import RxSwift
 
 class LoginGateway: HttpGateway<LoginResult> {
     func createLoginObservable(_ userId: String, _ password: String) -> Single<LoginResult> {
-        return createHttpObservable(url: "http://10.241.64.107:8080/smhos/api/test") { data in
+        let authParam = "deviceNo=2101&loginId=\(userId)&password=\(password)"
+        return createHttpPostObservable(url: "http://10.241.64.107:8080/smhos/api/login", param: authParam) { data in
             do {
                 let jsonDecoder = JSONDecoder()
                 return try jsonDecoder.decode(LoginResult.self, from: data)
