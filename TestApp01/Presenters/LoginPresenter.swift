@@ -16,7 +16,7 @@ class LoginPresenter {
     private let loginUseCase = LoginUseCase.shared
     private let disposeBag = DisposeBag()
 
-    func initArticleViewModel(
+    func initLoginViewModel(
         success: @escaping () -> Void,
         failure: @escaping (String) -> Void) {
 

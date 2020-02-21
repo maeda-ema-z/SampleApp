@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
     */
 
     private func initPresenter() {
-        loginPresenter.initArticleViewModel(
+        loginPresenter.initLoginViewModel(
             success: { [weak self] in
                 self?.successAuth()
             },
