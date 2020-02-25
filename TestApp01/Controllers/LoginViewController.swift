@@ -14,7 +14,8 @@ class LoginViewController: ViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var msgTextField: UILabel!
-
+    @IBOutlet weak var uuidTextField: UILabel!
+    
     private let loginPresenter = LoginPresenter.shared
     private let loginUseCase = LoginUseCase.shared
 
@@ -24,6 +25,9 @@ class LoginViewController: ViewController {
         // Do any additional setup after loading the view.
         initPresenter()
         initInputField()
+
+        let uuid = UIDevice.current.identifierForVendor!.uuidString
+        uuidTextField.text = uuid
     }
     
 
@@ -86,8 +90,6 @@ class LoginViewController: ViewController {
     }
 
     func failureAuth(message: String) {
-        //let aaa = UIDevice.current.identifierForVendor!.uuidString
-        //msgTextField.text = aaa
         msgTextField.text = message
     }
 }
