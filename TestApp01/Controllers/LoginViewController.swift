@@ -18,6 +18,7 @@ class LoginViewController: ViewController {
     
     private let loginPresenter = LoginPresenter.shared
     private let loginUseCase = LoginUseCase.shared
+    private let deviceUtil = DeviceUtil.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,7 @@ class LoginViewController: ViewController {
         initPresenter()
         initInputField()
 
-        let uuid = UIDevice.current.identifierForVendor!.uuidString
-        uuidTextField.text = uuid
+        uuidTextField.text = deviceUtil.getDeviceIdentifier()
     }
     
 
