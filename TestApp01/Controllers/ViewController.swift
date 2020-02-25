@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommonViewController: UIViewController {
+class ViewController: UIViewController {
 
     let indicator = UIActivityIndicatorView()
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2648C50A2404D57C00C305B6 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648C5092404D57C00C305B6 /* CommonViewController.swift */; };
+		2648C50A2404D57C00C305B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648C5092404D57C00C305B6 /* ViewController.swift */; };
 		2652863B23FE46740001B81D /* ArticleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652863923FE46740001B81D /* ArticleUser.swift */; };
 		2652863C23FE46740001B81D /* ArticleNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652863A23FE46740001B81D /* ArticleNews.swift */; };
 		2652863F23FE468C0001B81D /* ArticlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652863E23FE468C0001B81D /* ArticlePresenter.swift */; };
@@ -59,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		23A8DC316FA085253D5AEEEA /* Pods-TestApp01Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp01Tests.release.xcconfig"; path = "Target Support Files/Pods-TestApp01Tests/Pods-TestApp01Tests.release.xcconfig"; sourceTree = "<group>"; };
-		2648C5092404D57C00C305B6 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
+		2648C5092404D57C00C305B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2652863923FE46740001B81D /* ArticleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleUser.swift; sourceTree = "<group>"; };
 		2652863A23FE46740001B81D /* ArticleNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleNews.swift; sourceTree = "<group>"; };
 		2652863E23FE468C0001B81D /* ArticlePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlePresenter.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				2652864923FE51CE0001B81D /* ArticleViewController.swift */,
 				2652864A23FE51CE0001B81D /* ArticleDetailViewController.swift */,
 				2652864B23FE51CE0001B81D /* LoginViewController.swift */,
-				2648C5092404D57C00C305B6 /* CommonViewController.swift */,
+				2648C5092404D57C00C305B6 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -556,7 +556,7 @@
 				2652866423FE67EE0001B81D /* LoginUseCase.swift in Sources */,
 				2652865623FE57740001B81D /* ArticleNotificationPresenter.swift in Sources */,
 				26DA974F23FF5B8E00E02365 /* HttpGateway.swift in Sources */,
-				2648C50A2404D57C00C305B6 /* CommonViewController.swift in Sources */,
+				2648C50A2404D57C00C305B6 /* ViewController.swift in Sources */,
 				2652865423FE574B0001B81D /* ArticleNotificationResident.swift in Sources */,
 				26DA975123FF6A8100E02365 /* LoginResult.swift in Sources */,
 			);
