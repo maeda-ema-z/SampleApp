@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: CommonViewController {
 
     @IBOutlet weak var loginIdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -46,7 +46,10 @@ class LoginViewController: UIViewController {
                 self?.failureAuth(message: msg)
             },
             retry: { [weak self] in
-                self?.doRetry()
+//                self?.doRetry()
+                self?.showSendErrorRetryDialog() {
+                    self?.doLogin()
+                }
             }
         )
     }
@@ -74,7 +77,7 @@ class LoginViewController: UIViewController {
         let ud = UserDefaults.standard
         ud.set(loginId, forKey: "loginId")
         let naviC = self.presentingViewController as? UINavigationController
-        let parentVC = naviC?.viewControllers.last as! ViewController
+        let parentVC = naviC?.viewControllers.last as! ArticleViewController
         parentVC.isLogin = true
         self.dismiss(animated: true, completion: nil)
     }
@@ -83,21 +86,5 @@ class LoginViewController: UIViewController {
         //let aaa = UIDevice.current.identifierForVendor!.uuidString
         //msgTextField.text = aaa
         msgTextField.text = message
-    }
-
-    private func doRetry() -> Void {
-        let dialog = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        let attributedTitle = NSAttributedString(string: "通信エラー", attributes: [
-            NSAttributedString.Key.foregroundColor : UIColor.red
-        ])
-        let attributedMessage = NSAttributedString(string: "ネット接続を確認してください", attributes: [
-            NSAttributedString.Key.foregroundColor : UIColor.darkGray
-        ])
-        dialog.setValue(attributedTitle, forKey: "attributedTitle")
-        dialog.setValue(attributedMessage, forKey: "attributedMessage")
-        dialog.addAction(UIAlertAction(title: "再試行", style: .default, handler: {
-            action in self.doLogin()}))
-        dialog.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
-        self.present(dialog, animated: true, completion: nil)
     }
 }
