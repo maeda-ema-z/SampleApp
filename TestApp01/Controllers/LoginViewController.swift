@@ -24,6 +24,7 @@ class LoginViewController: CommonViewController {
         // Do any additional setup after loading the view.
         initPresenter()
         initInputField()
+        initWaitIndicator()
     }
     
 
@@ -40,13 +41,15 @@ class LoginViewController: CommonViewController {
     private func initPresenter() {
         loginPresenter.initLoginViewModel(
             success: { [weak self] in
+                self?.stopWaitIndicator()
                 self?.successAuth()
             },
             failure: { [weak self] (msg) in
+                self?.stopWaitIndicator()
                 self?.failureAuth(message: msg)
             },
             retry: { [weak self] in
-//                self?.doRetry()
+                self?.stopWaitIndicator()
                 self?.showSendErrorRetryDialog() {
                     self?.doLogin()
                 }
@@ -67,6 +70,7 @@ class LoginViewController: CommonViewController {
     }
 
     func doLogin() {
+        self.startWaitIndicator()
         let loginId = loginIdTextField.text
         let password = passwordTextField.text
         loginUseCase.login(loginId: loginId ?? "", password: password ?? "")
