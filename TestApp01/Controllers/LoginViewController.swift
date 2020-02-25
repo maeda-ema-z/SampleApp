@@ -24,7 +24,6 @@ class LoginViewController: ViewController {
         // Do any additional setup after loading the view.
         initPresenter()
         initInputField()
-        initWaitIndicator()
     }
     
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleViewController: UIViewController {
+class ArticleViewController: ViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -45,6 +45,7 @@ class ArticleViewController: UIViewController {
 
     private func fetchAction() {
         if isLogin {
+            self.startWaitIndicator()
             articleNewsUseCase.fetchArticles()
         }
     }
@@ -57,6 +58,7 @@ class ArticleViewController: UIViewController {
 
     private func initPresenter() {
         articlePresenter.initArticleViewModel() { [weak self] in
+            self?.stopWaitIndicator()
             self?.tableView?.reloadData()
         }
     }

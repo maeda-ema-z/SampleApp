@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleDetailViewController: UIViewController {
+class ArticleDetailViewController: ViewController {
 
     @IBOutlet weak var bodyLabel: UILabel!
 

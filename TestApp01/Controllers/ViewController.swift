@@ -12,6 +12,31 @@ class ViewController: UIViewController {
 
     let indicator = UIActivityIndicatorView()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        initWaitIndicator()
+    }
+
+    private func initWaitIndicator() {
+        indicator.center = view.center
+        indicator.style = .whiteLarge
+        indicator.color = .blue
+//        indicator.color = UIColor(red: 44/255, green: 169/255, blue: 225/255, alpha: 1)
+        view.addSubview(indicator)
+    }
+
+    func startWaitIndicator() {
+        self.indicator.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+
+    func stopWaitIndicator() {
+        self.indicator.stopAnimating()
+        view.isUserInteractionEnabled = true
+    }
+
     func showSendErrorRetryDialog(retry: @escaping () -> Void) {
         showRetryDialog(title: "通信エラー", message: "ネット接続を確認してください") {
             retry()
@@ -32,23 +57,5 @@ class ViewController: UIViewController {
             action in retry()}))
         dialog.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         self.present(dialog, animated: true, completion: nil)
-    }
-
-    func initWaitIndicator() {
-        indicator.center = view.center
-        indicator.style = .whiteLarge
-        indicator.color = .blue
-//        indicator.color = UIColor(red: 44/255, green: 169/255, blue: 225/255, alpha: 1)
-        view.addSubview(indicator)
-    }
-
-    func startWaitIndicator() {
-        self.indicator.startAnimating()
-        view.isUserInteractionEnabled = false
-    }
-
-    func stopWaitIndicator() {
-        self.indicator.stopAnimating()
-        view.isUserInteractionEnabled = true
     }
 }
