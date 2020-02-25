@@ -28,6 +28,7 @@ class LoginUseCase {
             },
             onError: { [weak self] error in
                 self?.loginResult = LoginResult(result: "ng")
+                self?.loginRelay.accept(false)
             }
         ).disposed(by: disposeBag)
     }

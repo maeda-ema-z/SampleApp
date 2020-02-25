@@ -18,16 +18,22 @@ class LoginPresenter {
 
     func initLoginViewModel(
         success: @escaping () -> Void,
-        failure: @escaping (String) -> Void) {
+        failure: @escaping (String) -> Void,
+        retry: @escaping () -> Void) {
 
         loginUseCase.loginRelay
             .observeOn(MainScheduler.instance)
             .subscribe(
             onNext: { [weak self] event in
-                if self?.loginUseCase.isSuccess() ?? false {
-                    success()
+                print("event=\(event)")
+                if event {
+                    if self?.loginUseCase.isSuccess() ?? false {
+                        success()
+                    } else {
+                        failure("Please Input LoginID = 1234 , Password = 0000 !!")
+                    }
                 } else {
-                    failure("Please Input LoginID = 1234 , Password = 0000 !!")
+                    retry()
                 }
             }
         ).disposed(by: disposeBag)
