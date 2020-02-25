@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2612A64224051124005C0D81 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612A64124051124005C0D81 /* DeviceUtil.swift */; };
+		2612A645240512A5005C0D81 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612A644240512A5005C0D81 /* DeviceUtil.swift */; };
 		2648C50A2404D57C00C305B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648C5092404D57C00C305B6 /* ViewController.swift */; };
 		264933BA2404FE3800A8DBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264933B92404FE3800A8DBA8 /* Main.storyboard */; };
 		2652863B23FE46740001B81D /* ArticleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652863923FE46740001B81D /* ArticleUser.swift */; };
@@ -60,7 +60,7 @@
 
 /* Begin PBXFileReference section */
 		23A8DC316FA085253D5AEEEA /* Pods-TestApp01Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp01Tests.release.xcconfig"; path = "Target Support Files/Pods-TestApp01Tests/Pods-TestApp01Tests.release.xcconfig"; sourceTree = "<group>"; };
-		2612A64124051124005C0D81 /* DeviceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
+		2612A644240512A5005C0D81 /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		2648C5092404D57C00C305B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		264933B92404FE3800A8DBA8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2652863923FE46740001B81D /* ArticleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleUser.swift; sourceTree = "<group>"; };
@@ -134,6 +134,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2612A643240512A5005C0D81 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2612A644240512A5005C0D81 /* DeviceUtil.swift */,
+			);
+			name = Utils;
+			path = TestApp01/Utils;
+			sourceTree = SOURCE_ROOT;
+		};
 		2652863823FE46740001B81D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,7 +273,7 @@
 				2652864523FE51A60001B81D /* UseCases */,
 				2652863823FE46740001B81D /* Entities */,
 				2652864F23FE51F50001B81D /* Gateways */,
-				2612A64124051124005C0D81 /* DeviceUtil.swift */,
+				2612A643240512A5005C0D81 /* Utils */,
 			);
 			path = TestApp01;
 			sourceTree = "<group>";
@@ -556,7 +565,7 @@
 				2652866223FE61B40001B81D /* NotificationCenterPresenter.swift in Sources */,
 				2652864E23FE51CE0001B81D /* LoginViewController.swift in Sources */,
 				847756EB23A0A530000BB73F /* AppDelegate.swift in Sources */,
-				2612A64224051124005C0D81 /* DeviceUtil.swift in Sources */,
+				2612A645240512A5005C0D81 /* DeviceUtil.swift in Sources */,
 				2652866423FE67EE0001B81D /* LoginUseCase.swift in Sources */,
 				2652865623FE57740001B81D /* ArticleNotificationPresenter.swift in Sources */,
 				26DA974F23FF5B8E00E02365 /* HttpGateway.swift in Sources */,
